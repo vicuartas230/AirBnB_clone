@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""
-Import unittest and created a class for unit test
-"""
-
+""" Import unittest and created a class for unit test """
 import os
+from datetime import datetime
 import unittest
 from models.base_model import BaseModel
 import models.base_model
+
 
 class TestBaseDocumentation(unittest.TestCase):
     """ Create a tests for the base class in documentation
@@ -16,7 +15,7 @@ class TestBaseDocumentation(unittest.TestCase):
         theReadme = os.getcwd()
         readmeOne = theReadme + '/README.md'
         readmeTwo = os.path.exists(readmeOne)
-        self.assertTrue(readmeTrue, True)
+        self.assertTrue(readmeTwo, True)
         with open(readmeOne, mode='r') as _file:
             readShebang = _file.read()
             self.assertTrue(len(readShebang) != 0)
@@ -28,7 +27,7 @@ class TestBaseDocumentation(unittest.TestCase):
 
     def test_style_pep8(self):
         """ PEP8 python style """
-        style_test = os.system("pep8 tests/test_base_model.py")
+        style_test = os.system("pep8 tests/test_models/test_base_model.py")
         self.assertEqual(style_test, 0)
 
     def test_shebang(self):
@@ -40,7 +39,7 @@ class TestBaseDocumentation(unittest.TestCase):
 
     def test_shebang_test(self):
         """ Test shebang in the front line in test file """
-        with open("tests/test_base_model.py", mode='r') as _file:
+        with open("tests/test_models/test_base_model.py", mode='r') as _file:
             readShebang = _file.read()
             lines = readShebang.splitlines()
             self.assertEqual(lines[0], '#!/usr/bin/python3')
@@ -57,3 +56,44 @@ class TestBaseDocumentation(unittest.TestCase):
         """ Methods with sufficient documentation """
         self.assertTrue(len(BaseModel.save.__doc__) != 0)
         self.assertTrue(len(BaseModel.to_dict.__doc__) != 0)
+
+
+class TestBaseModel(unittest.TestCase):
+    """ Create a tests for the base class BaseModel in edge cases """
+    def setUp(self):
+        self.id = BaseModel(1)
+
+    def tearDown(self):
+        del self.id
+
+    def test_attribute_id(self):
+        """ Check to the id number that is a public instance attributes """
+        object = BaseModel()
+        self.assertTrue(object.id != 0)
+        self.assertTrue(type(object.id) is str)
+
+    def test_attribute_create_at(self):
+        """ Check to the current datatime that is a public instance
+            attributes """
+        object = BaseModel()
+        self.assertTrue(object.created_at != 0)
+        self.assertIsInstance(object.created_at, datetime)
+
+    def test_attribute_updated_at(self):
+        """ Check to the current datatimea and will be updated that is a public
+            instance attributes """
+        object = BaseModel()
+        self.assertTrue(object.updated_at != 0)
+        self.assertIsInstance(object.updated_at, datetime)
+
+    def test_str_base_model(self):
+        """ Output representation informal form """
+        object = BaseModel()
+        object.my_number = 89
+        object.name = "Holberton"
+        self.assertEqual(object.__str__(), "[BaseModel]\
+(65bb1910-724c-4faf-a3c5-f893cdf8991a)\
+{'id': '65bb1910-724c-4faf-a3c5-f893cdf8991a',\
+'created_at': datetime.datetime(2021, 6, 26, 12, 2, 1, 26119),\
+'updated_at': datetime.datetime(2021, 6, 26, 12, 2, 1, 26120),\
+'my_number': 89, 'name': 'Holberton'}")
