@@ -96,3 +96,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(len(obj) != 0)
         # self.assertIsInstance(getattr(obj, "created_at"), str)
         # self.assertIsInstance(getattr(obj, "update_at"), str)
+
+    def test_kwargs(self):
+        """ Check that the instances created are not the same """
+        object = BaseModel()
+        object.my_number = 35
+        object.name = "Betty"
+        obj = object.to_dict()
+        new_obj = BaseModel(**obj)
+        self.assertFalse(object is new_obj)
+        self.assertIsInstance(new_obj.created_at, datetime)
+        self.assertIsInstance(new_obj.updated_at, datetime)
