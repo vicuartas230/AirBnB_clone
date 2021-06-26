@@ -60,12 +60,6 @@ class TestBaseDocumentation(unittest.TestCase):
 
 class TestBaseModel(unittest.TestCase):
     """ Create a tests for the base class BaseModel in edge cases """
-    def setUp(self):
-        self.id = BaseModel(1)
-
-    def tearDown(self):
-        del self.id
-
     def test_attribute_id(self):
         """ Check to the id number that is a public instance attributes """
         object = BaseModel()
@@ -80,20 +74,25 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(object.created_at, datetime)
 
     def test_attribute_updated_at(self):
-        """ Check to the current datatimea and will be updated that is a public
+        """ Check to the current datatime and will be updated that is a public
             instance attributes """
         object = BaseModel()
         self.assertTrue(object.updated_at != 0)
         self.assertIsInstance(object.updated_at, datetime)
 
-    def test_str_base_model(self):
-        """ Output representation informal form """
+    def test_save_method(self):
+        """ Check instance of update_at that is datetime """
+        object = BaseModel()
+        object.save()
+        self.assertIsInstance(object.updated_at, datetime)
+
+    def test_to_dict(self):
+        """ Check returns the dictionary representation """
         object = BaseModel()
         object.my_number = 89
         object.name = "Holberton"
-        self.assertEqual(object.__str__(), "[BaseModel]\
-(65bb1910-724c-4faf-a3c5-f893cdf8991a)\
-{'id': '65bb1910-724c-4faf-a3c5-f893cdf8991a',\
-'created_at': datetime.datetime(2021, 6, 26, 12, 2, 1, 26119),\
-'updated_at': datetime.datetime(2021, 6, 26, 12, 2, 1, 26120),\
-'my_number': 89, 'name': 'Holberton'}")
+        obj = object.to_dict()
+        self.assertIsInstance(obj, dict)
+        self.assertTrue(len(obj) != 0)
+        # self.assertIsInstance(getattr(obj, "created_at"), str)
+        # self.assertIsInstance(getattr(obj, "update_at"), str)
