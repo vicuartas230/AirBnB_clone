@@ -2,6 +2,7 @@
 """ This script defines a BaseModel class """
 from datetime import datetime
 import uuid
+import models
 
 
 class BaseModel():
@@ -22,6 +23,7 @@ class BaseModel():
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """ This method returns a string representation of the instance """
@@ -31,11 +33,15 @@ class BaseModel():
     def save(self):
         """ This method updates the date of modification """
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """ This method returns a dictionary with the instance attributes """
-        return dict(my_number=getattr(self, "my_number"),
-                    name=getattr(self, "name"), id=self.id,
-                    created_at=self.created_at.isoformat(),
-                    updated_at=self.updated_at.isoformat(),
-                    __class__=__class__.__name__)
+        new = {}
+        current = self.__dict__
+        for key, value in current.items():
+            if key == 'created_at' or key == 'updated_at':
+                new.update({key: getattr(self, key).isoformat()})
+            else:
+                new.update({key: value})
+        return new
