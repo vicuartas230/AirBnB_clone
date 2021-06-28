@@ -1,24 +1,23 @@
 #!/usr/bin/python3
-
+""" This script defines a class HBNBCommand """
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """ HBNH console """
+    """ This class contains the entry point of the command interpreter. """
     prompt = '(hbnb) '
 
     def do_EOF(self, arg):
-        """Exits console"""
+        """ This method exits of the console using Ctrl + D. """
         return True
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """ This method exits of the program through quit command. """
         return True
 
     def emptyline(self):
-        """Print empy line"""
+        """ This method prints a new line when there is no command. """
         return False
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
