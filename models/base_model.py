@@ -32,12 +32,14 @@ class BaseModel():
 
     def save(self):
         """ This method updates the date of modification """
+        models.storage.new(self)
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """ This method returns a dictionary with the instance attributes """
         new = {}
+        new.update({'__class__': self.__class__.__name__})
         current = self.__dict__
         for key, value in current.items():
             if key == 'created_at' or key == 'updated_at':
