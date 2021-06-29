@@ -28,7 +28,7 @@ class BaseModel():
     def __str__(self):
         """ This method returns a string representation of the instance """
         return "[{}] ({}) {}\
-".format(__class__.__name__, self.id, self.__dict__)
+".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """ This method updates the date of modification """

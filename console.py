@@ -2,6 +2,12 @@
 """ This script defines a class HBNBCommand """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
 from models.engine.file_storage import FileStorage
 import models
 
@@ -13,13 +19,15 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """ This method creates a new instance of BaseModel,
             saves it (to the JSON file) and prints the id. """
+        list_classes = ['BaseModel', 'User', 'State', 'Review', 'Place',
+                        'Amenity', 'City']
         words = args.split()
         if len(words) != 1:
             print('** class name missing **')
-        elif words[0] != 'BaseModel':
+        elif words[0] not in list_classes:
             print('** class doesn\'t exist **')
         else:
-            dummy = BaseModel()
+            dummy = eval(words[0])()
             dummy.save()
             print(dummy.id)
 
@@ -104,8 +112,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in main_dict.items():
                 id = key.split('.')
                 if id[1] == words[1]:
-                    a = type(words[2])
-                    setattr(main_dict[key], words[2], a(words[3]))
+                    setattr(main_dict[key], words[2], eval(words[3]))
                     models.storage.save()
                     break
                 i += 1
