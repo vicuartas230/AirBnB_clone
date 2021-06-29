@@ -27,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
         elif words[0] not in list_classes:
             print('** class doesn\'t exist **')
         else:
-            dummy = eval(words[0] + '()')
+            dummy = eval(words[0])()
             dummy.save()
             print(dummy.id)
 
@@ -112,8 +112,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in main_dict.items():
                 id = key.split('.')
                 if id[1] == words[1]:
-                    a = type(words[2])
-                    setattr(main_dict[key], words[2], a(words[3]))
+                    setattr(main_dict[key], words[2], eval(words[3]))
                     models.storage.save()
                     break
                 i += 1
