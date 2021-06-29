@@ -86,6 +86,7 @@ class TestStorage(unittest.TestCase):
         obj = BaseModel()
         obj.save()
         self.assertTrue(os.path.exists(file))
+        os.remove(file)
 
     def test_reload(self):
         """ Deserialize the JSON file to __objects """
