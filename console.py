@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
         words = args.split()
         if len(words) != 1:
             print('** class name missing **')
-        elif words[0] != 'BaseModel':
+        elif words[0] != 'BaseModel': # lista de clases. words[0] == lista.eval(args[0])
             print('** class doesn\'t exist **')
         else:
             dummy = BaseModel()
