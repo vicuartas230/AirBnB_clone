@@ -7,7 +7,7 @@ from models.state import State
 import models.state
 
 
-class TestUserDocumentation(unittest.TestCase):
+class TestStateDocumentation(unittest.TestCase):
     """ Create a tests for the User class in documentation
     and requirements """
 
