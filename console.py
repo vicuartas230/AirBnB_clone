@@ -23,9 +23,9 @@ class HBNBCommand(cmd.Cmd):
             saves it (to the JSON file) and prints the id. """
         words = args.split()
         if len(words) != 1:
-            print('** class name missing **')
+            print("** class name missing **")
         elif words[0] not in HBNBCommand.list_classes:
-            print('** class doesn\'t exist **')
+            print("** class doesn't exist **")
         else:
             dummy = eval(words[0])()
             dummy.save()
@@ -37,11 +37,11 @@ class HBNBCommand(cmd.Cmd):
         words = args.split()
         list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
-            print('** class name missing **')
+            print("** class name missing **")
         elif len(words) == 1 and words[0] not in HBNBCommand.list_classes:
-            print('** class doesn\'t exist **')
+            print("** class doesn't exist **")
         elif len(words) == 1:
-            print('** instance id missing **')
+            print("** instance id missing **")
         elif len(words) == 2 and words[1] not in list_ids:
             print('** no instance found **')
         else:
@@ -58,13 +58,13 @@ class HBNBCommand(cmd.Cmd):
         words = args.split()
         list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
-            print('** class name missing **')
+            print("** class name missing **")
         elif len(words) == 1 and words[0] not in HBNBCommand.list_classes:
-            print('** class doesn\'t exist **')
+            print("** class doesn't exist **")
         elif len(words) == 1:
-            print('** instance id missing **')
+            print("** instance id missing **")
         elif len(words) == 2 and words[1] not in list_ids:
-            print('** no instance found **')
+            print("** no instance found **")
         else:
             instances = models.storage.all()
             for key in instances.keys():
@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
         """ This method prints all string representation
             of all instances based or not on the class name. """
         if args and args not in HBNBCommand.list_classes:
-            print('** class doesn\'t exist **')
+            print("** class doesn't exist **")
         elif not args:
             print([str(value) for value in models.storage.all().values()])
         else:
@@ -92,17 +92,17 @@ class HBNBCommand(cmd.Cmd):
         words = args.split()
         list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
-            print('** class name missing **')
+            print("** class name missing **")
         elif len(words) == 1 and words[0] not in HBNBCommand.list_classes:
-            print('** class doesn\'t exist **')
+            print("** class doesn't exist **")
         elif len(words) == 1:
-            print('** instance id missing **')
+            print("** instance id missing **")
         elif len(words) == 2 and words[1] not in list_ids:
-            print('** no instance found **')
+            print("** no instance found **")
         elif len(words) == 2 and words[1] in list_ids:
-            print('** attribute name missing **')
+            print("** attribute name missing **")
         elif len(words) == 3:
-            print('** value missing **')
+            print("** value missing **")
         else:
             main_dict = models.storage.all()
             for key, value in main_dict.items():
