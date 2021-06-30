@@ -10,7 +10,7 @@ class BaseModel():
         for other classes. """
     def __init__(self, *args, **kwargs):
         """ Constructor method to initialize the attribute of the
-            instantiated object with one args and kwars """
+            instantiated object with one args and kwargs """
         if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':

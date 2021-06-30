@@ -95,6 +95,11 @@ class TestBaseModel(unittest.TestCase):
         object.save()
         self.assertIsInstance(object.updated_at, datetime)
 
+    def test_save(self):
+        """Doc
+        """
+        pass
+
     def test_to_dict(self):
         """ Check returns the dictionary representation """
         object = BaseModel()
