@@ -46,11 +46,11 @@ class HBNBCommand(cmd.Cmd):
             print('** no instance found **')
         else:
             instances = models.storage.all()
-            for key, value in instances.items():
-                id = key.split('.')
-                if id[1] == words[1]:
-                    print(value)
-                    break
+            id = words[0] + '.' + words[1]
+            if id in instances:
+                print(instances[id])
+            else:
+                print('** no instance found **')
 
     def do_destroy(self, args):
         """ This method deletes an instance based on the class name
@@ -67,12 +67,12 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             instances = models.storage.all()
-            for key in instances.keys():
-                id = key.split('.')
-                if id[1] == words[1]:
-                    FileStorage._FileStorage__objects.pop(key)
-                    models.storage.save()
-                    break
+            id = words[0] + '.' + words[1]
+            if id in instances:
+                FileStorage._FileStorage__objects.pop(id)
+                models.storage.save()
+            else:
+                print('** no instance found **')
 
     def do_all(self, args=None):
         """ This method prints all string representation
@@ -105,12 +105,12 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             main_dict = models.storage.all()
-            for key, value in main_dict.items():
-                id = key.split('.')
-                if id[1] == words[1]:
-                    setattr(main_dict[key], words[2], words[3])
-                    models.storage.save()
-                    break
+            id = words[0] + '.' + words[1]
+            if id in main_dict:
+                setattr(main_dict[id], words[2], words[3])
+                models.storage.save()
+            else:
+                print("** no instance found **")
 
     def do_EOF(self, arg):
         """ This method exits of the console using Ctrl + D. """
