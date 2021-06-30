@@ -5,5 +5,6 @@ from models.base_model import BaseModel
 
 class Amenity(BaseModel):
     """  This class inherits from BaseModel.
-         Created four public class attributes. """
+    Created a public class attributes. """
+
     name = ""
