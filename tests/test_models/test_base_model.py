@@ -63,15 +63,24 @@ class TestBaseModel(unittest.TestCase):
     def test_attribute_id(self):
         """ Check to the id number that is a public instance attributes """
         object = BaseModel()
+        object.dynamic = 'attr'
+        inst = BaseModel()
         self.assertTrue(object.id != 0)
         self.assertTrue(type(object.id) is str)
+        self.assertEqual(object.dynamic, 'attr')
+        self.assertNotEqual(object.id, inst.id)
 
     def test_attribute_create_at(self):
         """ Check to the current datatime that is a public instance
             attributes """
         object = BaseModel()
+        inst = BaseModel()
         self.assertTrue(object.created_at != 0)
         self.assertIsInstance(object.created_at, datetime)
+        self.assertNotEqual(object.created_at, inst.created_at)
+        self.assertNotEqual(object.updated_at, inst.updated_at)
+        self.assertNotEqual(object.created_at, inst.updated_at)
+        self.assertNotEqual(inst.created_at, object.updated_at)
 
     def test_attribute_updated_at(self):
         """ Check to the current datatime and will be updated that is a public
@@ -94,8 +103,7 @@ class TestBaseModel(unittest.TestCase):
         obj = object.to_dict()
         self.assertIsInstance(obj, dict)
         self.assertTrue(len(obj) != 0)
-        # self.assertIsInstance(getattr(obj, "created_at"), str)
-        # self.assertIsInstance(getattr(obj, "update_at"), str)
+        self.assertEqual(obj['updated_at'], object.to_dict()['updated_at'])
 
     def test_kwargs(self):
         """ Check that the instances created are not the same """
