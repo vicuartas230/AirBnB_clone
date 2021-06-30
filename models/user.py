@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 
 class User(BaseModel):
     """ This class inherits from BaseModel.
-    Created a public class attributes. """
+    Created four public class attribute. """
 
     email = ""
     password = ""
