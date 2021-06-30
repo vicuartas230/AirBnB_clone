@@ -43,15 +43,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(words) == 1:
             print("** instance id missing **")
-        elif len(words) == 2 and words[1] not in list_ids:
-            print('** no instance found **')
-        else:
-            instances = models.storage.all()
-            id = words[0] + '.' + words[1]
-            if id in instances:
-                print(instances[id])
-            else:
+        elif len(words) == 2:
+            if words[0] not in HBNBCommand.list_classes:
+                print("** class doesn't exist **")
+            elif words[1] not in list_ids:
                 print('** no instance found **')
+            else:
+                instances = models.storage.all()
+                id = words[0] + '.' + words[1]
+                if id in instances:
+                    print(instances[id])
+                else:
+                    print('** no instance found **')
 
     def do_destroy(self, args):
         """ This method deletes an instance based on the class name
@@ -64,16 +67,19 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(words) == 1:
             print("** instance id missing **")
-        elif len(words) == 2 and words[1] not in list_ids:
-            print("** no instance found **")
-        else:
-            instances = models.storage.all()
-            id = words[0] + '.' + words[1]
-            if id in instances:
-                instances.pop(id)
-                models.storage.save()
+        elif len(words) == 2:
+            if words[0] not in HBNBCommand.list_classes:
+                print("** class doesn't exist **")
+            elif words[1] not in list_ids:
+                print("** no instance found **")
             else:
-                print('** no instance found **')
+                instances = models.storage.all()
+                id = words[0] + '.' + words[1]
+                if id in instances:
+                    instances.pop(id)
+                    models.storage.save()
+                else:
+                    print('** no instance found **')
 
     def do_all(self, args=None):
         """ This method prints all string representation
@@ -98,20 +104,33 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(words) == 1:
             print("** instance id missing **")
-        elif len(words) == 2 and words[1] not in list_ids:
-            print("** no instance found **")
-        elif len(words) == 2 and words[1] in list_ids:
-            print("** attribute name missing **")
-        elif len(words) == 3:
-            print("** value missing **")
-        else:
-            main_dict = models.storage.all()
-            id = words[0] + '.' + words[1]
-            if id in main_dict:
-                setattr(main_dict[id], words[2], words[3])
-                models.storage.save()
-            else:
+        elif len(words) == 2:
+            if words[0] not in HBNBCommand.list_classes:
+                print("** class doesn't exist **")
+            elif words[1] not in list_ids:
                 print("** no instance found **")
+            else:
+                print("** attribute name missing **")
+        elif len(words) == 3:
+            if words[0] not in HBNBCommand.list_classes:
+                print("** class doesn't exist **")
+            elif words[1] not in list_ids:
+                print("** no instance found **")
+            else:
+                print("** value missing **")
+        elif len(words) == 4:
+            if words[0] not in HBNBCommand.list_classes:
+                print("** class doesn't exist **")
+            elif words[1] not in list_ids:
+                print("** no instance found **")
+            else:
+                main_dict = models.storage.all()
+                id = words[0] + '.' + words[1]
+                if id in main_dict:
+                    setattr(main_dict[id], words[2], words[3])
+                    models.storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_EOF(self, arg):
         """ This method exits of the console using Ctrl + D. """
