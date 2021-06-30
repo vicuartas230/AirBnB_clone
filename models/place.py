@@ -5,7 +5,8 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """  This class inherits from BaseModel.
-         Created four public class attributes. """
+    Created some public class attributes. """
+
     city_id = ""
     user_id = ""
     name = ""
