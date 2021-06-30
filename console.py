@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ This script defines a class HBNBCommand """
 import cmd
+import shlex
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -89,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         """ This method updates an instance based on the
             class name and id by adding or updating attribute
             (save the change into the JSON file). """
-        words = args.split()
+        words = shlex.split(args)
         list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
             print("** class name missing **")
