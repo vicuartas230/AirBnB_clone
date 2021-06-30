@@ -5,5 +5,5 @@ from models.base_model import BaseModel
 
 class State(BaseModel):
     """  This class inherits from BaseModel.
-         Created four public class attributes. """
+    Created a public class attribute. """
     name = ""
