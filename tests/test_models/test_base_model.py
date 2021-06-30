@@ -91,9 +91,16 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_method(self):
         """ Check instance of update_at that is datetime """
-        object = BaseModel()
-        object.save()
-        self.assertIsInstance(object.updated_at, datetime)
+        # object = BaseModel()
+        # object.save()
+        # self.assertIsInstance(object.updated_at, datetime)
+        self.object = BaseModel()
+        date_old = self.object.updated_at
+        self.object.save()
+        self.assertNotEqual(date_old, self.object.updated_at)
+        date_old = self.object.updated_at
+        self.object.save()
+        self.assertNotEqual(date_old, self.object.updated_at)
 
     def test_save(self):
         """Doc
