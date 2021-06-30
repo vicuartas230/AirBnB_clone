@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in main_dict.items():
                 id = key.split('.')
                 if id[1] == words[1]:
-                    setattr(main_dict[key], words[2], eval(words[3]))
+                    setattr(main_dict[key], words[2], words[3])
                     models.storage.save()
                     break
 
