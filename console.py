@@ -35,48 +35,44 @@ class HBNBCommand(cmd.Cmd):
         """ This method prints the string representation of an instance
             based on the class name and id. """
         words = args.split()
+        list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
             print('** class name missing **')
         elif len(words) == 1 and words[0] != 'BaseModel':
             print('** class doesn\'t exist **')
         elif len(words) == 1:
             print('** instance id missing **')
+        elif len(words) == 2 and words[1] not in list_ids:
+            print('** no instance found **')
         else:
             instances = models.storage.all()
-            length = len(instances)
-            i = 0
             for key, value in instances.items():
                 id = key.split('.')
                 if id[1] == words[1]:
                     print(value)
                     break
-                i += 1
-            if i >= length:
-                print('** no instance found **')
 
     def do_destroy(self, args):
         """ This method deletes an instance based on the class name
             and id (save the change into the JSON file). """
         words = args.split()
+        list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
             print('** class name missing **')
         elif len(words) == 1 and words[0] != 'BaseModel':
             print('** class doesn\'t exist **')
         elif len(words) == 1:
             print('** instance id missing **')
+        elif len(words) == 2 and words[1] not in list_ids:
+            print('** no instance found **')
         else:
             instances = models.storage.all()
-            length = len(instances)
-            i = 0
             for key in instances.keys():
                 id = key.split('.')
                 if id[1] == words[1]:
                     FileStorage._FileStorage__objects.pop(key)
                     models.storage.save()
                     break
-                i += 1
-            if i >= length:
-                print('** no instance found **')
 
     def do_all(self, args=None):
         """ This method prints all string representation
@@ -95,29 +91,27 @@ class HBNBCommand(cmd.Cmd):
             class name and id by adding or updating attribute
             (save the change into the JSON file). """
         words = args.split()
+        list_ids = [v.id for v in models.storage.all().values()]
         if len(words) < 1:
             print('** class name missing **')
         elif len(words) == 1 and words[0] != 'BaseModel':
             print('** class doesn\'t exist **')
         elif len(words) == 1:
             print('** instance id missing **')
-        elif len(words) == 2:
+        elif len(words) == 2 and words[1] not in list_ids:
+            print('** no instance found **')
+        elif len(words) == 2 and words[1] in list_ids:
             print('** attribute name missing **')
         elif len(words) == 3:
             print('** value missing **')
         else:
             main_dict = models.storage.all()
-            length = len(main_dict)
-            i = 0
             for key, value in main_dict.items():
                 id = key.split('.')
                 if id[1] == words[1]:
                     setattr(main_dict[key], words[2], eval(words[3]))
                     models.storage.save()
                     break
-                i += 1
-            if i >= length:
-                print('** no instance found **')
 
     def do_EOF(self, arg):
         """ This method exits of the console using Ctrl + D. """
