@@ -5,7 +5,8 @@ from models.base_model import BaseModel
 
 class Review(BaseModel):
     """  This class inherits from BaseModel.
-         Created four public class attributes. """
+    Created three public class attributes. """
+
     place_id = ""
     user_id = ""
     text = ""
