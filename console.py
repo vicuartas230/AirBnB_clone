@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             instances = models.storage.all()
             id = words[0] + '.' + words[1]
             if id in instances:
-                FileStorage._FileStorage__objects.pop(id)
+                instances.pop(id)
                 models.storage.save()
             else:
                 print('** no instance found **')
