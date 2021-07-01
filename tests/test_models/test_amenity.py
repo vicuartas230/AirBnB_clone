@@ -46,4 +46,11 @@ class TestAmenityDocumentation(unittest.TestCase):
 
 class TestAmenity(unittest.TestCase):
     """ Create a tests for the class Amenity in edge cases """
-    pass
+    def test_exists(self):
+        """ This method checks for class of an object """
+        object = Amenity()
+        self.assertEqual(object.__class__, Amenity)
+
+    def test_attribute(self):
+        """ This method checks for a public class attribute """
+        self.assertIsInstance(Amenity.name, str)

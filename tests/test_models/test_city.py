@@ -46,4 +46,12 @@ class TestCityDocumentation(unittest.TestCase):
 
 class TestCity(unittest.TestCase):
     """ Create a tests for the class City in edge cases """
-    pass
+    def test_exists(self):
+        """ This method checks for class of an object """
+        object = City()
+        self.assertEqual(object.__class__, City)
+
+    def test_attribute(self):
+        """ This method checks for a public class attribute """
+        self.assertIsInstance(City.name, str)
+        self.assertIsInstance(City.state_id, str)

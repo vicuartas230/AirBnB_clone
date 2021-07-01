@@ -46,4 +46,14 @@ class TestUserDocumentation(unittest.TestCase):
 
 class TestUser(unittest.TestCase):
     """ Create a tests for the class User in edge cases """
-    pass
+    def test_exists(self):
+        """ This method checks for class of an object """
+        object = User()
+        self.assertEqual(object.__class__, User)
+
+    def test_attribute(self):
+        """ This method checks for a public class attribute """
+        self.assertIsInstance(User.email, str)
+        self.assertIsInstance(User.password, str)
+        self.assertIsInstance(User.first_name, str)
+        self.assertIsInstance(User.last_name, str)

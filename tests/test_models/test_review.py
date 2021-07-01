@@ -46,4 +46,13 @@ class TestReviewDocumentation(unittest.TestCase):
 
 class TestReview(unittest.TestCase):
     """ Create a tests for the class Review in edge cases """
-    pass
+    def test_exists(self):
+        """ This method checks for class of an object """
+        object = Review()
+        self.assertEqual(object.__class__, Review)
+
+    def test_attribute(self):
+        """ This method checks for a public class attribute """
+        self.assertIsInstance(Review.place_id, str)
+        self.assertIsInstance(Review.user_id, str)
+        self.assertIsInstance(Review.text, str)

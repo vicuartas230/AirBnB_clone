@@ -46,4 +46,11 @@ class TestStateDocumentation(unittest.TestCase):
 
 class TestState(unittest.TestCase):
     """ Create a tests for the class State in edge cases """
-    pass
+    def test_exists(self):
+        """ This method checks for class of an object """
+        object = State()
+        self.assertEqual(object.__class__, State)
+
+    def test_attribute(self):
+        """ This method checks for a public class attribute """
+        self.assertIsInstance(State.name, str)
