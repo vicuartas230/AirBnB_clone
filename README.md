@@ -36,25 +36,51 @@ To start using the console, you must take into account that you will handle inst
 ### Examples of usage :100:
 This is how the commands are used:
 #### Mode interactive
+**`create`**
 
+> (hbnb) create User
+> d4d0e872-8bb3-4c0f-842d-e34b660135d0
+> (hbnb) 
 
+**`all`**
+
+> (hbnb) all
+> ["[User] (d4d0e872-8bb3-4c0f-842d-e34b660135d0) {'id': 'd4d0e872-8bb3-4c0f-842d-e34b660135d0', 'created_at': datetime.datetime(2021, 6, 30, 23, 41, 40, 495400), 'updated_at': datetime.datetime(2021, 6, 30, 23, 41, 40, 495460)}", "[City] (063f1704-164a-4738-bf67-9787c55738ea) {'id': '063f1704-164a-4738-bf67-9787c55738ea', 'created_at': datetime.datetime(2021, 6, 30, 23, 45, 16, 633744), 'updated_at': datetime.datetime(2021, 6, 30, 23, 45, 16, 633781)}", "[Place] (4749ca95-7594-42bb-9f94-87c52dec48fb) {'id': '4749ca95-7594-42bb-9f94-87c52dec48fb', 'created_at': datetime.datetime(2021, 6, 30, 23, 45, 22, 109526), 'updated_at': datetime.datetime(2021, 6, 30, 23, 45, 22, 109593)}"]
+> (hbnb) 
+
+*Note*: This command works by itself and displays all instances that have been created in the different classes. On the contrary, `show`, shows an instance of a specific class with its corresponding id.
+
+**`update` and `show`**
+
+> (hbnb) update Place 4749ca95-7594-42bb-9f94-87c52dec48fb number_rooms 5
+> (hbnb) show Place 4749ca95-7594-42bb-9f94-87c52dec48fb
+> [Place] (4749ca95-7594-42bb-9f94-87c52dec48fb) {'id': '4749ca95-7594-42bb-9f94-87c52dec48fb', 'created_at': datetime.datetime(2021, 6, 30, 23, 45, 22, 109526), 'updated_at': datetime.datetime(2021, 6, 30, 23, 45, 22, 109593), 'number_rooms': '5'}
+> (hbnb) 
+
+**`destroy`**
+
+> (hbnb) destroy Place 4749ca95-7594-42bb-9f94-87c52dec48fb
+> (hbnb) all
+> ["[User] (d4d0e872-8bb3-4c0f-842d-e34b660135d0) {'id': 'd4d0e872-8bb3-4c0f-842d-e34b660135d0', 'created_at': datetime.datetime(2021, 6, 30, 23, 41, 40, 495400), 'updated_at': datetime.datetime(2021, 6, 30, 23, 41, 40, 495460)}", "[City] (063f1704-164a-4738-bf67-9787c55738ea) {'id': '063f1704-164a-4738-bf67-9787c55738ea', 'created_at': datetime.datetime(2021, 6, 30, 23, 45, 16, 633744), 'updated_at': datetime.datetime(2021, 6, 30, 23, 45, 16, 633781)}"]
+> (hbnb) 
+
+As you can see, what is shown is a string representation of the instance and a dictionary with the attributes of that instance (all the methods in the base_model.py file). The file that stores ("file.json"), is a JSON string representation in a dictionary.
 
 #### Mode no-interactive
 **`help`**
-`echo "help" | ./console.py`
-> (hbnb) 
+
+> (hbnb) `echo "help" | ./console.py`
 > Documented commands (type help <topic>):
 > ========================================
 > EOF  all  create  destroy  help  quit  show  update
 > (hbnb) %
 
 
-
 ## Run tests :checkered_flag: 
 
 Tests should be executed by using this command:
+
      python3 -m unittest discover tests
-     
 
 
 ## Authors :registered:
