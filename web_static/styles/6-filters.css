@@ -27,14 +27,14 @@ button:hover {
 .locations {
     height: 100%;
     width: 25%;
-    margin-left: 6%;
     border-right: solid #DDDDDD 1px;
+    text-indent: 23%;
 }
 
 .amenities {
     height: 100%;
     width: 25%;
-    margin-left: 6%;
+    text-indent: 23%;
 }
 
 h3 {
@@ -57,12 +57,18 @@ h2 {
 
 .popover {
     display: none;
-    color: #FAFAFA;
-    width: inherit;
-    border: #DDDDDD 1px;
+    list-style-type: none;
+    text-indent: -5%;
+    background-color: #FAFAFA;
+    max-width: inherit;
+    border: solid #DDDDDD 1px;
     border-radius: 4px;
 }
 
-.locations:hover {
+.locations:hover .popover {
+    display: block;
+}
+
+.amenities:hover .popover {
     display: block;
 }
