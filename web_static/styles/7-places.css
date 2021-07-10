@@ -1,13 +1,12 @@
 .places {
     font-size: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
-#items {
+.items {
     display: flex;
-}
-
-#items2 {
-    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
