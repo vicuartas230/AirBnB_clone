@@ -35,12 +35,11 @@ article h2 {
     color: #FF5A5F;
     border: solid #FF5A5F 4px;
     border-radius: 50%;
+    display: flex;
     min-width: 60px;
     height: 60px;
     font-size: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .information {
