@@ -25,17 +25,10 @@ article h2 {
 
 .first {
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 4fr;
+    grid-template-columns: 1.6fr 0.38fr;
     gap: 0px 0px;
-}
-
-.first h2 {
-    grid-area: 1 / 1 / 2 / 3;
-}
-
-.first .price_by_night {
-    grid-area: 1 / 2 / 2 / 3;
 }
 
 .price_by_night {
@@ -45,8 +38,9 @@ article h2 {
     min-width: 60px;
     height: 60px;
     font-size: 30px;
-    text-align: center;
-    line-height: 200%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .information {
@@ -88,4 +82,5 @@ article h2 {
 
 .description {
     font-size: 13px;
+    text-align: justify;
 }
